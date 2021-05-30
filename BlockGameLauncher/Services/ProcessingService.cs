@@ -14,7 +14,7 @@ namespace BlockGameLauncher.Services
 
             Datapackage resp = ConncectionService.Send(new Datapackage(request, user));
 
-            if (resp.RequestType.Equals("true"))
+            if (resp.RequestType.Equals("True"))
             {
                 return new Tuple<Boolean, Datapackage>(true, resp);
             }

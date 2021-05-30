@@ -18,6 +18,22 @@ namespace DatabaseServer.Models
             this.Password = p;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            User u = (User)obj;
+
+            if (u.Name.Equals(this.Name) & u.Password.Equals(this.Password))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 
 }

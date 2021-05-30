@@ -40,17 +40,7 @@ namespace DatabaseServer
         public void StartDB()
         {
             db = new DatabaseContext();
-            db.Database.EnsureCreated();
-
-            Console.WriteLine("hello db");
-
-            User u = (from c in db.User
-                     where c.Name == "admin"
-                     select c).ToList<User>().First<User>();
-            Console.WriteLine(u.Name);
-
-            db.SaveChanges();
-            
+            db.Database.EnsureCreated();            
         }
 
         public void StartListening()
@@ -110,8 +100,7 @@ namespace DatabaseServer
             switch (d.RequestType)
             {
                 case "Login":
-                    resp = new Datapackage("Got response", d.User);
-                    Console.WriteLine("worked");
+                    resp = new Datapackage(LoginRequest(d.User).ToString(), d.User);
                     break;
                 case "Register":
 
@@ -123,10 +112,36 @@ namespace DatabaseServer
             return resp;
         }
 
-        private bool DoesUserExist(User u)
+        private bool LoginRequest(User u)
         {
-            
+
+            Tuple<bool, User> doesExist = DoesUserExist(u);
+
+            if(doesExist.Item1 == true)
+            {
+                if (u.Equals(doesExist.Item2))
+                {
+                    Console.WriteLine("User exists" + u.Name);
+                    return true;
+                }
+            }
+
             return false;
+        }
+
+        public Tuple<bool, User> DoesUserExist(User u)
+        {
+
+            List<User> userlist = (from c in db.User
+                                   where c.Name == u.Name
+                                   select c).ToList();
+
+            if(userlist.Count != 0)
+            {
+                return new Tuple<bool, User>(true, userlist.First());
+            }
+
+            return new Tuple<bool, User>(false, null);
         }
     }
 
