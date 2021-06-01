@@ -40,7 +40,7 @@ namespace DatabaseServer
         public void StartDB()
         {
             db = new DatabaseContext();
-            db.Database.EnsureCreated();            
+            db.Database.EnsureCreated();
         }
 
         public void StartListening()
@@ -129,6 +129,19 @@ namespace DatabaseServer
             return false;
         }
 
+        public Tuple<bool, User> RegisterRequest(User u)
+        {
+            if (!DoesUserExist(u).Item1)
+            {
+                db.User.Add(u);
+                db.SaveChanges();
+
+                Console.WriteLine("New User added: " + u.Name);
+            }
+
+            return new Tuple<bool, User>(false, null);
+        }
+
         public Tuple<bool, User> DoesUserExist(User u)
         {
 
@@ -143,6 +156,8 @@ namespace DatabaseServer
 
             return new Tuple<bool, User>(false, null);
         }
+
+
     }
 
 }

@@ -12,10 +12,6 @@
         AllowsTransparency="True"
         ResizeMode="NoResize">
 
-    <Window.DataContext>
-        <VM:MainWindowViewModel />
-    </Window.DataContext>
-
     <Border Background="White" CornerRadius="5">
         <Grid>
 
@@ -47,15 +43,16 @@
             need to html this
             </TextBox>
 
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="13,240,180,142">Username:</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="18,260,175,122">Password:</TextBlock>
+            <TextBlock x:Name = "nameLabel" Grid.Row="1" Grid.Column="1" Margin="13,240,180,142">Username:</TextBlock>
+            <TextBlock x:Name="passLabel" Grid.Row="1" Grid.Column="1" Margin="18,260,175,122">Password:</TextBlock>
 
             <TextBox x:Name="userBox" Grid.Column="1" Grid.Row="1" Width="120" Height="18" Margin="75,237,55,145"></TextBox>
             <PasswordBox x:Name="passwordBox" Grid.Column="1" Grid.Row="1" Width="120" Height="18" Margin="75,260,55,122"></PasswordBox>
 
             <Button x:Name="loginButton" Grid.Column="1" Grid.Row="1" Height="25" Width="50" Margin="66,298,134,77" Click="loginButton_Click">Login</Button>
             <Button x:Name="registerButton" Grid.Column="1" Grid.Row="1" Height="25" Width="50" Margin="130,298,70,77" Click="registerButton_Click">Register</Button>
-
+            <Button x:Name="StartButton" Grid.Column="1" Grid.Row="1" Height="25" Width="125" Margin="56,278,69,97" Click="StartButton_Click" Visibility="Hidden">Launch</Button>
+            
         </Grid>
     </Border>
 </Window>

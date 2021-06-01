@@ -36,12 +36,24 @@ namespace BlockGameLauncher
         {
             if(!(String.IsNullOrEmpty(userBox.Text) & String.IsNullOrEmpty(passwordBox.Password))) {
                 Tuple<Boolean, Datapackage> data = ProcessingService.HandleLogin(userBox.Text, passwordBox.Password);
-
+                
                 if (data.Item1)
                 {
-                    userBox.vis
+                    userBox.Visibility = Visibility.Hidden;
+                    passwordBox.Visibility = Visibility.Hidden;
+                    loginButton.Visibility = Visibility.Hidden;
+                    registerButton.Visibility = Visibility.Hidden;
+                    nameLabel.Visibility = Visibility.Hidden;
+                    passLabel.Visibility = Visibility.Hidden;
+
+                    StartButton.Visibility = Visibility.Visible;
                 }
             }
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

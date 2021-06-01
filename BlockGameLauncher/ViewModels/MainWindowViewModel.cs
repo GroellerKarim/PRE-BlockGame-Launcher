@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BlockGameLauncher.ViewModels
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel
     {
 
         private bool _showLoginElements;
 
         public MainWindowViewModel()
         {
-            _showLoginElements = false;
+            _showLoginElements = true;
         }
 
         public bool ShowLoginElements()

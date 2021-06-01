@@ -1,0 +1,29 @@
+﻿<Window x:Class="BlockGameLauncher.Views.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlockGameLauncher.Views"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="300" Width="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="277*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <Label FontSize="22" FontWeight="Bold" Margin="13,35,-11,-26" Grid.RowSpan="2">Create Account</Label>
+        
+        <Label Margin="10,135,-8,-77" Grid.RowSpan="2">Username:</Label>
+        <Label Margin="13,158,-11,-111" Grid.RowSpan="2">Password:</Label>
+        <Label Margin="19,181,69,-141" Grid.RowSpan="2">Confirm:</Label>
+
+        <TextBox x:Name="userBox" Height="15" Margin="80,142,46,120"/>
+        <PasswordBox x:Name="passBox" Height="15" Margin="80,165,46,97"/>
+        <PasswordBox x:Name="conPassBox" Height="15" Margin="80,188,46,74"/>
+
+        <Button x:Name="ConfirmButton" Height="20" Width="50" Margin="43,238,107,19" Click="ConfirmButton_Click" RenderTransformOrigin="-0.26,0.551">Confirm</Button>
+        <Button x:Name="CloseButton" Height="20" Width="50" Margin="105,238,45,19" Click="CloseButton_Click">Close</Button>
+
+    </Grid>
+</Window>
