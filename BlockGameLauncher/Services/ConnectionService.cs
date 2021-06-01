@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BlockGameLauncher.Services
 {
-    class ConncectionService
+    class ConnectionService
     {
 
         private static readonly string IP_ADDRESS = "127.0.0.1";

@@ -7,12 +7,12 @@ namespace BlockGameLauncher.Services
 {
     public class ProcessingService
     {
-        public static Tuple<Boolean, Datapackage> HandleLogin(String username, String password)
+        public static Tuple<Boolean, Datapackage> SendUserData(String username, String password)
         {
             string request = "Login";
             User user = new User(username, password);
 
-            Datapackage resp = ConncectionService.Send(new Datapackage(request, user));
+            Datapackage resp = ConnectionService.Send(new Datapackage(request, user));
 
             if (resp.RequestType.Equals("True"))
             {
@@ -21,6 +21,7 @@ namespace BlockGameLauncher.Services
 
             return new Tuple<Boolean, Datapackage>(false, resp);
         }
+
 
     }
 }

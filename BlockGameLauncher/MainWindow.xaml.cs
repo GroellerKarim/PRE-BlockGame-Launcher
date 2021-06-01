@@ -35,7 +35,7 @@ namespace BlockGameLauncher
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             if(!(String.IsNullOrEmpty(userBox.Text) & String.IsNullOrEmpty(passwordBox.Password))) {
-                Tuple<Boolean, Datapackage> data = ProcessingService.HandleLogin(userBox.Text, passwordBox.Password);
+                Tuple<Boolean, Datapackage> data = ProcessingService.SendUserData(userBox.Text, passwordBox.Password);
                 
                 if (data.Item1)
                 {

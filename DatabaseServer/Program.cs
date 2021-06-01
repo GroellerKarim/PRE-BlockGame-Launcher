@@ -101,9 +101,9 @@ namespace DatabaseServer
             {
                 case "Login":
                     resp = new Datapackage(LoginRequest(d.User).ToString(), d.User);
-                    break;
+                    break;  
                 case "Register":
-
+                    resp = new Datapackage(RegisterRequest(d.User).ToString(), d.User);
                     break;
                 default:
                     break;
@@ -129,7 +129,7 @@ namespace DatabaseServer
             return false;
         }
 
-        public Tuple<bool, User> RegisterRequest(User u)
+        public bool RegisterRequest(User u)
         {
             if (!DoesUserExist(u).Item1)
             {
@@ -137,9 +137,10 @@ namespace DatabaseServer
                 db.SaveChanges();
 
                 Console.WriteLine("New User added: " + u.Name);
+                return true;
             }
 
-            return new Tuple<bool, User>(false, null);
+            return false;
         }
 
         public Tuple<bool, User> DoesUserExist(User u)
