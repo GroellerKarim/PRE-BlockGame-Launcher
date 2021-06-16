@@ -1,4 +1,5 @@
 ﻿using BlockGameLauncher.Services;
+using BlockGameLauncher.Views;
 using DatabaseServer.Models;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace BlockGameLauncher
         private void registerButton_Click(object sender, RoutedEventArgs e)
         {
             // Needs to be implemented
+            RegistrationWindow registration = new RegistrationWindow();
+            registration.Show();
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
@@ -53,7 +56,7 @@ namespace BlockGameLauncher
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Run exe command
         }
     }
 }

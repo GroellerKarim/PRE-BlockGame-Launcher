@@ -22,6 +22,19 @@ namespace BlockGameLauncher.Services
             return new Tuple<Boolean, Datapackage>(false, resp);
         }
 
+        public static Boolean SendRegistrationData(String username, String password)
+        {
+            string request = "register";
+            User user = new User(username, password);
+            Datapackage resp = ConnectionService.Send(new Datapackage(request, user));
+
+            if (resp.RequestType.Equals("True"))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlockGameLauncher.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +27,21 @@ namespace BlockGameLauncher.Views
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            if(!String.IsNullOrEmpty(userBox.Text) && !String.IsNullOrEmpty(conPassBox.Password) && !String.IsNullOrEmpty(passBox.Password))
+            {
+                if (conPassBox.Password.Equals(passBox.Password))
+                {
+                    if(ProcessingService.SendRegistrationData(userBox.Text, passBox.Password))
+                    {
+                        this.Close();
+                    }
+                }
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
