@@ -30,6 +30,15 @@ namespace BlockGameLauncher
         private void registerButton_Click(object sender, RoutedEventArgs e)
         {
             // Needs to be implemented
+            if(!String.IsNullOrEmpty(userBox.Text) && !String.IsNullOrEmpty(passwordBox.Password))
+            {
+                bool resp = ProcessingService.SendRegisterData(userBox.Text, passwordBox.Password);
+                if (resp)
+                {
+                    userBox.Text = "";
+                    passwordBox.Password = "";
+                }
+            }
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)

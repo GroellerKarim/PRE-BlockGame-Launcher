@@ -121,7 +121,7 @@ namespace DatabaseServer
             {
                 if (u.Equals(doesExist.Item2))
                 {
-                    Console.WriteLine("User exists" + u.Name);
+                    Console.WriteLine("User exists: " + u.Name);
                     return true;
                 }
             }
