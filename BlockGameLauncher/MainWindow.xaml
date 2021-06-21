@@ -16,7 +16,7 @@
         <Grid>
 
             <Grid.Background>
-                <ImageBrush ImageSource="/Images/BG3.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Images/unknown.png" Stretch="UniformToFill"/>
             </Grid.Background>
 
             <Grid.ColumnDefinitions>
