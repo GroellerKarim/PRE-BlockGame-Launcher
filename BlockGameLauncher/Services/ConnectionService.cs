@@ -12,13 +12,13 @@ namespace BlockGameLauncher.Services
     {
 
         private static readonly string IP_ADDRESS = "127.0.0.1";
+        private static readonly int PORT = 2200;
 
         public  Datapackage Send(Datapackage message)
         {
             try
             {
-                int port = 2200;
-                TcpClient client = new TcpClient(IP_ADDRESS, port);
+                TcpClient client = new TcpClient(IP_ADDRESS, PORT);
 
                 NetworkStream stream = client.GetStream();
                 BinaryFormatter formatter = new BinaryFormatter();
