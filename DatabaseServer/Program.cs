@@ -27,7 +27,9 @@ namespace DatabaseServer
         TcpListener server = null;
         BinaryFormatter formatter = new BinaryFormatter();
         DatabaseContext db;
-        
+
+        public static volatile bool running;
+
         public Server(string ip, int port)
         {
             StartDB();
@@ -47,7 +49,8 @@ namespace DatabaseServer
         {
             try
             {
-                while (true)
+                running = true;
+                while (running)
                 {
                     Console.WriteLine("Waiting for a connection...");
                     TcpClient client = server.AcceptTcpClient();
@@ -75,7 +78,7 @@ namespace DatabaseServer
             int i;
             try
             {
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
+                                                                                                                                        #pragma warning disable SYSLIB0011 // Type or member is obsolete
                 Datapackage package = (Datapackage)formatter.Deserialize(stream);
 
                 Datapackage response = HandleRequest(package);
@@ -174,7 +177,7 @@ namespace DatabaseServer
             return new Tuple<bool, User>(false, null);
         }
 
-
     }
+
 
 }

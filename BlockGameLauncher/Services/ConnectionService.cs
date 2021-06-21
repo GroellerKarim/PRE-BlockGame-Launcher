@@ -23,7 +23,7 @@ namespace BlockGameLauncher.Services
                 NetworkStream stream = client.GetStream();
                 BinaryFormatter formatter = new BinaryFormatter();
 
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
+                                                                                                                                    #pragma warning disable SYSLIB0011;
                 formatter.Serialize(stream, message);
 
                 Datapackage response = (Datapackage)formatter.Deserialize(stream);
@@ -35,8 +35,8 @@ namespace BlockGameLauncher.Services
             }
 
             catch (Exception e)
-            { 
-                throw e;
+            {
+                return null;
             }
         }
     }
