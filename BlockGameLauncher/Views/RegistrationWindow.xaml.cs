@@ -20,9 +20,13 @@ namespace BlockGameLauncher.Views
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+
+        public ProcessingService Processor { get; set; }
+
         public RegistrationWindow()
         {
             InitializeComponent();
+            Processor = new ProcessingService();
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -31,7 +35,8 @@ namespace BlockGameLauncher.Views
             {
                 if (conPassBox.Password.Equals(passBox.Password))
                 {
-                    if(ProcessingService.SendRegistrationData(userBox.Text, passBox.Password))
+                    bool done = Processor.SendRegistrationData(userBox.Text, passBox.Password);
+                    if(done)
                     {
                         this.Close();
                     }

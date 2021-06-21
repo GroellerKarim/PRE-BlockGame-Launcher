@@ -20,4 +20,8 @@
     <ProjectReference Include="..\DatabaseServer\DatabaseServer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Models\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using DatabaseServer.Models;
+﻿using BlockGameLauncher.Domain.Interfaces;
+using DatabaseServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -7,12 +8,12 @@ using System.Text;
 
 namespace BlockGameLauncher.Services
 {
-    class ConnectionService
+    public class ConnectionService: IConnectionService
     {
 
         private static readonly string IP_ADDRESS = "127.0.0.1";
 
-        public static Datapackage Send(Datapackage message)
+        public  Datapackage Send(Datapackage message)
         {
             try
             {
@@ -34,8 +35,7 @@ namespace BlockGameLauncher.Services
             }
 
             catch (Exception e)
-            {
-
+            { 
                 throw e;
             }
         }

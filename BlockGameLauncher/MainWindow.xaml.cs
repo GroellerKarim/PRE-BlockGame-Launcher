@@ -23,9 +23,13 @@ namespace BlockGameLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public ProcessingService Processor { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+
+            Processor = new ProcessingService();
         }
 
         private void registerButton_Click(object sender, RoutedEventArgs e)
@@ -38,19 +42,10 @@ namespace BlockGameLauncher
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             if(!(String.IsNullOrEmpty(userBox.Text) & String.IsNullOrEmpty(passwordBox.Password))) {
-                Tuple<Boolean, Datapackage> data = ProcessingService.SendUserData(userBox.Text, passwordBox.Password);
+                Tuple<Boolean, Datapackage> data = Processor.SendUserData(userBox.Text, passwordBox.Password);
                 
                 if (data.Item1)
-                {
-                    userBox.Visibility = Visibility.Hidden;
-                    passwordBox.Visibility = Visibility.Hidden;
-                    loginButton.Visibility = Visibility.Hidden;
-                    registerButton.Visibility = Visibility.Hidden;
-                    nameLabel.Visibility = Visibility.Hidden;
-                    passLabel.Visibility = Visibility.Hidden;
-
                     StartButton.Visibility = Visibility.Visible;
-                }
             }
         }
 

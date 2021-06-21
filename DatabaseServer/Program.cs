@@ -53,7 +53,7 @@ namespace DatabaseServer
                     TcpClient client = server.AcceptTcpClient();
                     Console.WriteLine("Client connected.");
 
-                    Thread t = new Thread(new ParameterizedThreadStart(HandleDevice));
+                    Thread t = new Thread(new ParameterizedThreadStart(HandleRequest));
                     t.Start(client);
                 }
             }
@@ -64,7 +64,7 @@ namespace DatabaseServer
             }
         }
 
-        public void HandleDevice(Object obj)
+        public void HandleRequest(Object obj)
         {
             TcpClient client = (TcpClient)obj;
             var stream = client.GetStream();
@@ -105,6 +105,9 @@ namespace DatabaseServer
                 case "Register":
                     resp = new Datapackage(RegisterRequest(d.User).ToString(), d.User);
                     break;
+                case "Update":
+                    resp = new Datapackage(UpdateRequest(d.User).ToString(), d.User);
+                    break;
                 default:
                     break;
             }
@@ -140,6 +143,19 @@ namespace DatabaseServer
                 return true;
             }
 
+            return false;
+        }
+
+        public bool UpdateRequest(User u)
+        {
+            if (DoesUserExist(u).Item1)
+            {
+                db.User.Update(u);
+                db.SaveChanges();
+
+                Console.WriteLine("User's password updated: " + u.Name + " " + u.Password);
+                return true;
+            }
             return false;
         }
 

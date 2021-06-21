@@ -1,32 +1,39 @@
-﻿using DatabaseServer.Models;
+﻿using BlockGameLauncher.Domain.Interfaces;
+using DatabaseServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BlockGameLauncher.Services
 {
-    public class ProcessingService
+    public class ProcessingService : IProcessingService
     {
-        public static Tuple<Boolean, Datapackage> SendUserData(String username, String password)
+        public ConnectionService Connection { get; set; }
+        public ProcessingService()
+        {
+            Connection = new ConnectionService();
+        }
+
+        public Tuple<bool, Datapackage> SendUserData(string username, string password)
         {
             string request = "Login";
             User user = new User(username, password);
 
-            Datapackage resp = ConnectionService.Send(new Datapackage(request, user));
+            Datapackage resp = Connection.Send(new Datapackage(request, user));
 
             if (resp.RequestType.Equals("True"))
             {
-                return new Tuple<Boolean, Datapackage>(true, resp);
+                return new Tuple<bool, Datapackage>(true, resp);
             }
 
-            return new Tuple<Boolean, Datapackage>(false, resp);
+            return new Tuple<bool, Datapackage>(false, resp);
         }
 
-        public static Boolean SendRegistrationData(String username, String password)
+        public bool SendRegistrationData(string username, string password)
         {
             string request = "register";
             User user = new User(username, password);
-            Datapackage resp = ConnectionService.Send(new Datapackage(request, user));
+            Datapackage resp = Connection.Send(new Datapackage(request, user));
 
             if (resp.RequestType.Equals("True"))
             {
